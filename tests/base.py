@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# This amulet test deploys the bundles.yaml file in this directory.
+# This amulet test deploys a sub-class named yaml file in this directory.
 
 import os
 import unittest
@@ -16,6 +16,8 @@ class GangliaBundleTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """ Set up an amulet deployment using the bundle. """
+        if not cls.bundle_name:
+            return
         d = amulet.Deployment()
         bundle_path = os.path.join(os.path.dirname(__file__), cls.bundle_name)
         with open(bundle_path, 'r') as bundle_file:
