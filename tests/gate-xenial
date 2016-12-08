@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+# This amulet test deploys the bundles.yaml file in this directory.
+
+import unittest
+
+from base import GangliaBundleTest
+
+
+class GangliaXenialBundleTest(GangliaBundleTest):
+    """ Ganglia Trusty Test """
+    bundle_name = 'bundle-xenial.yaml'
+
+
+if __name__ == '__main__':
+    unittest.main()

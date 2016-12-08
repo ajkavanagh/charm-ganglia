@@ -1,3 +1,4 @@
 .bzr
 bin
 .tox
+func-results.json
