@@ -42,6 +42,7 @@ RESTART_MAP = {
 
 PACKAGES = [
     "ganglia-webfrontend",
+    "ganglia-modules-linux",
     GMETAD,
     GMOND,
 ]
@@ -134,11 +135,16 @@ def expose_ganglia():
 
 
 def install_ganglia():
-    fetch.apt_install(PACKAGES, fatal=True)
+    fetch.add_source(hookenv.config('source'),
+                     hookenv.config('key'))
+    pkgs = fetch.filter_installed_packages(PACKAGES)
+    if pkgs:
+        fetch.apt_install(pkgs, fatal=True)
 
 
 # Hook helpers for dict lookups for switching
-@hooks.hook('install')
+@hooks.hook('install',
+            'upgrade-charm')
 def install_hook():
     install_ganglia()
     configure_gmond()
@@ -151,13 +157,6 @@ def install_hook():
 def website_hook():
     hookenv.relation_set(port=80,
                          hostname=hookenv.unit_get("private-address"))
-
-
-@hooks.hook('upgrade-charm')
-def upgrade_hook():
-    configure_gmond()
-    configure_gmetad()
-    expose_ganglia()
 
 
 @hooks.hook('head-relation-joined')
