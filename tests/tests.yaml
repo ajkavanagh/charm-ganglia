@@ -15,3 +15,5 @@ makefile: []
 # and tox instead.  ie. The venv is constructed before bundletester
 # is invoked.
 #python-packages:
+requirements:
+  - test-requirements.txt
