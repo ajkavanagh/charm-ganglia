@@ -16,4 +16,5 @@ makefile: []
 # is invoked.
 #python-packages:
 requirements:
+  - requirements.txt
   - test-requirements.txt
