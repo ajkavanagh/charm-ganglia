@@ -10,10 +10,10 @@ description: |
 tags:
   - misc
 series:
+  - focal
+  - bionic
   - xenial
   - trusty
-  - yakkety
-  - zesty
 requires:
   master:
     interface: monitor
